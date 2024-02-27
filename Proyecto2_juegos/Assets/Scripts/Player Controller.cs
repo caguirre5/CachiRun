@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     Vector3 newPosition;
 
-    float zPosition = 0f; // Variable para almacenar la posición Z actual
-    float targetZPosition = 0f; // Variable para almacenar la posición Z objetivo
+    float zPosition = 2.5f; // Variable para almacenar la posición Z actual
+    float targetZPosition = 2.5f; // Variable para almacenar la posición Z objetivo
 
     public float movementSpeed = 5f; // Velocidad de movimiento
 
@@ -36,13 +36,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            targetZPosition += 1.5f; // Sumar 1 al valor de la posición Z objetivo
+            targetZPosition += 3f; // Sumar 1 al valor de la posición Z objetivo
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            targetZPosition -= 1.5f; // Restar 1 al valor de la posición Z objetivo
+            targetZPosition -= 3f; // Restar 1 al valor de la posición Z objetivo
         }
-        targetZPosition = Mathf.Clamp(targetZPosition, -1.5f, 1.5f);
+        targetZPosition = Mathf.Clamp(targetZPosition, -0.5f, 5.5f);
         zPosition = Mathf.Lerp(zPosition, targetZPosition, Time.deltaTime * movementSpeed);
 
         transform.position = new Vector3(transform.position.x, transform.position.y, zPosition);
