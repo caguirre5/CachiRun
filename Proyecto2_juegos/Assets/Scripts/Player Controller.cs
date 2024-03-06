@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 gravity;
     public Vector3 jumpSpeed;
+    private Animator animator;
 
     bool isGrounded = false;
 
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         Physics.gravity = gravity;
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            animator.SetBool("isJumping", true);
             rb.velocity = jumpSpeed;
             isGrounded = false;
         }
@@ -50,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        animator.SetBool("isJumping", false);
         isGrounded = true;
     }
 }

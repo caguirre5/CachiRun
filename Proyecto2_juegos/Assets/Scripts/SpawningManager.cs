@@ -27,7 +27,7 @@ public class SpawningManager : MonoBehaviour
         int randomIndex = Random.Range(0, obstacles.Length);
 
         // Instanciar el objeto en el punto de aparición
-        Instantiate(obstacles[randomIndex], transform.position, Quaternion.identity);
+        Instantiate(obstacles[randomIndex], transform.position, Quaternion.Euler(0, -90, 0));
 
         Invoke("InstantiateObject", Random.Range(minInterval, maxInterval));
     }
