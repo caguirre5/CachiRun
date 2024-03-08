@@ -9,11 +9,16 @@ public class SpawningManager : MonoBehaviour
     public float minInterval = 1f; // Intervalo mínimo entre instanciaciones
     public float maxInterval = 3f; // Intervalo máximo entre instanciaciones
 
+    private bool temp = false;
+    public MenuController gameStartController;
     // Start is called before the first frame update
     public float[] zPositions = { -1.5f, 0f, 1.5f };
     void Start()
     {
-        Invoke("InstantiateObject", 2f);
+        if (gameStartController.Playing)
+        {
+            Invoke("InstantiateObject", 2f);
+        }
     }
 
     // Update is called once per frame

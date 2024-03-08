@@ -8,18 +8,29 @@ public class EndlessScrollHouse : MonoBehaviour
     public float ScrollFactor = -1;
     public Vector3 gameVelocity;
 
+    private bool temp = false;
     Rigidbody rb;
+
+    public MenuController menucontroller;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.velocity = gameVelocity * ScrollFactor;
+        if (menucontroller.Playing)
+        {
+
+            rb = GetComponent<Rigidbody>();
+            rb.velocity = gameVelocity * ScrollFactor;
+        }
     }
 
     void OnTriggerExit(Collider gameArea)
     {
-        // Destroy(gameObject);
-        transform.position += Vector3.right * (gameArea.bounds.size.x + GetComponent<BoxCollider>().size.x);
+        if (gameArea.CompareTag("SpawnArea"))
+        {
+            // Realizar acciones específicas si el collider tiene el tag deseado
+            // Por ejemplo, destruir el objeto o cambiar su posición
+            // Destroy(gameObject);
+            transform.position = new Vector3(41.25f, 0.25f, 9.15f);
+        }
     }
-
 }
