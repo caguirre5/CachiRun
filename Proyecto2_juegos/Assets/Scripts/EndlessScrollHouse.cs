@@ -11,16 +11,9 @@ public class EndlessScrollHouse : MonoBehaviour
     private bool temp = false;
     Rigidbody rb;
 
-    public MenuController menucontroller;
     // Start is called before the first frame update
     void Start()
     {
-        if (menucontroller.Playing)
-        {
-
-            rb = GetComponent<Rigidbody>();
-            rb.velocity = gameVelocity * ScrollFactor;
-        }
     }
 
     void OnTriggerExit(Collider gameArea)
@@ -32,5 +25,11 @@ public class EndlessScrollHouse : MonoBehaviour
             // Destroy(gameObject);
             transform.position = new Vector3(41.25f, 0.25f, 9.15f);
         }
+    }
+
+    public void StartComponent()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = gameVelocity * ScrollFactor;
     }
 }

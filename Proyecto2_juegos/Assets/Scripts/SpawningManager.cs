@@ -15,10 +15,6 @@ public class SpawningManager : MonoBehaviour
     public float[] zPositions = { -1.5f, 0f, 1.5f };
     void Start()
     {
-        if (gameStartController.Playing)
-        {
-            Invoke("InstantiateObject", 2f);
-        }
     }
 
     // Update is called once per frame
@@ -35,5 +31,10 @@ public class SpawningManager : MonoBehaviour
         Instantiate(obstacles[randomIndex], transform.position, Quaternion.Euler(0, -90, 0));
 
         Invoke("InstantiateObject", Random.Range(minInterval, maxInterval));
+    }
+
+    public void StartComponent()
+    {
+        Invoke("InstantiateObject", 2f);
     }
 }

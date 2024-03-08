@@ -23,11 +23,6 @@ public class BarraHambre : MonoBehaviour
     void Start()
     {
         vidaActual = vidaMax;
-        if (menucontroller.Playing)
-        {
-
-            InvokeRepeating("DecreaseCountdown", 0.5f, 1f);
-        }
     }
 
     // Update is called once per frame
@@ -53,5 +48,10 @@ public class BarraHambre : MonoBehaviour
         // Resta 1 al tiempo actual
         vidaActual -= 1f;
 
+    }
+
+    public void StartComponent()
+    {
+        InvokeRepeating("DecreaseCountdown", 0.5f, 1f);
     }
 }
