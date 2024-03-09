@@ -12,7 +12,7 @@ public class SpawningManager : MonoBehaviour
     private bool temp = false;
     public MenuController gameStartController;
     // Start is called before the first frame update
-    public float[] zPositions = { -1.5f, 0f, 1.5f };
+    public float[] zPositions = new float[3] { -0.5f, 2.5f, 5.5f };
     void Start()
     {
     }
@@ -26,9 +26,12 @@ public class SpawningManager : MonoBehaviour
     public void InstantiateObject()
     {
         int randomIndex = Random.Range(0, obstacles.Length);
+        // float randomZ = transform.position.z + Random.Range(-3f, 3f);
+        float randomZ = zPositions[Random.Range(0, zPositions.Length)];
+        Debug.Log("Posicion en z = "+randomZ);
 
         // Instanciar el objeto en el punto de aparición
-        Instantiate(obstacles[randomIndex], transform.position, Quaternion.Euler(0, -90, 0));
+        Instantiate(obstacles[randomIndex], new Vector3(transform.position.x, transform.position.y, randomZ), Quaternion.Euler(0, -90, 0));
 
         Invoke("InstantiateObject", Random.Range(minInterval, maxInterval));
     }
